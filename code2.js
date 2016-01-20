@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		balls[id].spring.setEndValue(1);
 	}
 
-	let testXSpring = springSystem.createSpring(80, 5);
-	let testYSpring = springSystem.createSpring(80, 5);
+	let testXSpring = springSystem.createSpring(60, 10);
+	let testYSpring = springSystem.createSpring(60, 10);
 	const x = { onSpringUpdate: function(spring) {
 		translate(balls.b1.elem, testXSpring.getCurrentValue(), testYSpring.getCurrentValue());
 	}}
@@ -71,5 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	document.body.onmouseup = function(e) {
 		document.body.removeEventListener('mousemove', move);
+		if (testXSpring.getCurrentValue() > (window.innerWidth / 2)) {
+			testXSpring.setEndValue(window.innerWidth);
+		} else {
+			testXSpring.setEndValue(0);
+		}
 	}
 });
