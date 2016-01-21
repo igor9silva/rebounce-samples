@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		balls[id].spring.setEndValue(1);
 	}
 
-	let testXSpring = springSystem.createSpring(60, 10);
-	let testYSpring = springSystem.createSpring(60, 10);
+	let testXSpring = springSystem.createSpring(80, 5);
+	let testYSpring = springSystem.createSpring(80, 5);
 	const x = { onSpringUpdate: function(spring) {
 		translate(balls.b1.elem, testXSpring.getCurrentValue(), testYSpring.getCurrentValue());
 	}}
