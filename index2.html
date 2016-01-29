@@ -4,9 +4,15 @@
 		<script src="rebound.min.js"></script>
 		<script src="code2.js"></script>
 		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
 			body, html {
 				width: 100%;
 				height: 100%;
+				overflow: hidden;
 			}
 
 			.ball {
@@ -18,11 +24,15 @@
 				list-style-type: none;
 			}
 
-			#b1 {
-				/*left: calc(20% - 25px); */
-				background-color: blue;
+			#b0 {
+				background-color: orange;
 				top: -25px;
 				left: -25px;
+			}
+
+			#b1 {
+				left: calc(20% - 25px);
+				background-color: blue;
 			}
 
 			#b2 {
@@ -39,14 +49,28 @@
 				left: calc(80% - 25px);
 				background-color: yellow;
 			}
+
+			#selected {
+				width: 250px;
+				height: 250px;
+				border-radius: 50%;
+				background-color: pink;
+				position: absolute;
+				left: 50%;
+				top: 100%;
+				z-index: -1;
+				transition: all 200ms ease-in-out;
+			}
 		</style>
 	</head>
 	<body>
 		<ul id="main">
+			<li id="b0" class="ball"></li>
 			<li id="b1" class="ball"></li>
 			<li id="b2" class="ball"></li>
 			<li id="b3" class="ball"></li>
 			<li id="b4" class="ball"></li>
 		</ul>
+		<div id="selected" style="opacity: 0; transform: translate3d(-50%, -50%, 0) scale(0);"></div>
 	</body>
 </html>
