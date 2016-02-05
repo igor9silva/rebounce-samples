@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let testXSpring = springSystem.createSpring(80, 5);
 	let testYSpring = springSystem.createSpring(80, 5);
 	const x = { onSpringUpdate: function(spring) {
-		translate(balls.b1.elem, testXSpring.getCurrentValue(), testYSpring.getCurrentValue());
+		translate(balls.b0.elem, testXSpring.getCurrentValue(), testYSpring.getCurrentValue());
 	}}
 
 	testXSpring.addListener(x);
@@ -57,21 +57,38 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 	testXSpring.setEndValue(e.pageX);
 	// 	testYSpring.setEndValue(e.pageY);
 	// 	// console.log(e.pageX, e.pageY);
-	// 	// translate(balls.b1.elem, e.pageX, e.pageY);
+	// 	// translate(balls.b0.elem, e.pageX, e.pageY);
 	// }
 
+	var half = window.innerWidth / 2;
+	var threshold = 180;
+	var selected = document.getElementById('selected');
 	function move(e) {
-		testXSpring.setEndValue(e.pageX);
-		testYSpring.setEndValue(e.pageY);
+		if ((e.pageX > (half - threshold) && e.pageX < (half + threshold)) && (e.pageY > (window.innerHeight - threshold))) {
+			testXSpring.setEndValue(half);
+			testYSpring.setEndValue(window.innerHeight - 50);
+			selected.style.opacity = 1;
+			selected.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+		} else {
+			testXSpring.setEndValue(e.pageX);
+			testYSpring.setEndValue(e.pageY);
+			selected.style.opacity = 0;
+			selected.style.transform = 'translate3d(-50%, -50%, 0) scale(0)';
+		}
 	}
 
-	balls.b1.elem.onmousedown = function(e) {
+	balls.b0.elem.onmousedown = function(e) {
 		document.body.addEventListener('mousemove', move);
 	}
 
 	document.body.onmouseup = function(e) {
 		document.body.removeEventListener('mousemove', move);
-		if (testXSpring.getCurrentValue() > (window.innerWidth / 2)) {
+		if ((e.pageX > (half - threshold) && e.pageX < (half + threshold)) && (e.pageY > (window.innerHeight - threshold))) {
+			testXSpring.setEndValue(half);
+			testYSpring.setEndValue(window.innerHeight - 50);
+			selected.style.opacity = 1;
+			selected.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+		} else if (testXSpring.getCurrentValue() > (window.innerWidth / 2)) {
 			testXSpring.setEndValue(window.innerWidth);
 		} else {
 			testXSpring.setEndValue(0);
