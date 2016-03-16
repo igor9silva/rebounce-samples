@@ -4,7 +4,7 @@ Collection of samples showing what [ReboundJS](https://github.com/facebook/rebou
 
 ## Demo
 
-You can see the available samples at the [demo page](http://igor9silva.github.io/rebounce-samples/).
+You can see the available samples at the [demo page](http://igor9silva.github.io/rebound-samples/).
 
 ## Licensing
 
